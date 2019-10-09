@@ -1,13 +1,14 @@
-package com.stackroute.services;
+package com.stackroute.MovieApp.service;
 
 import com.stackroute.Exception.MovieAlreadyExistsException;
 import com.stackroute.Exception.MovieNotFoundException;
 import com.stackroute.MovieApplication.domain.Movie;
 import com.stackroute.MovieApp.exception.MovieAlreadyExistsException;
 import com.stackroute.MovieApp.exception.MovieNotFoundException;
-import com.stackroute.MovieApp.repository.MovieRepository;
+import com.stackroute.MovieApplication.MovieRepository;
 import com.stackroute.MovieRepository.MovieRepository;
 import com.stackroute.domain.Movie;
+import com.stackroute.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MovieServiceImpl implements ApplicationListener<ContextRefreshedEvent>, CommandLineRunner, MovieServiceImpl1 {
+public class MovieServiceImpl implements MovieService, ApplicationListener<ContextRefreshedEvent>, CommandLineRunner {
 
     @Value("${movie.1.title:default}")
     String title1;
@@ -57,7 +58,10 @@ public class MovieServiceImpl implements ApplicationListener<ContextRefreshedEve
         return savedMovie;
     }
 
-
+    @Override
+    public List<Movie> getAllMovie() {
+        return movieRepository.findAll();
+    }
 
     @Override
     public Optional<Movie> getById(int id) throws MovieNotFoundException {
@@ -70,7 +74,7 @@ public class MovieServiceImpl implements ApplicationListener<ContextRefreshedEve
     }
 
     @Override
-    public boolean deleteById(int id) throws MovieNotFoundException{
+    public boolean deleteById(int id) throws MovieNotFoundException {
         Optional<Movie> movieId = movieRepository.findById(id);
         if (movieId.isEmpty()){
             throw new MovieNotFoundException("Movie not found");
@@ -131,6 +135,9 @@ public class MovieServiceImpl implements ApplicationListener<ContextRefreshedEve
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         movieRepository.save(new Movie(1, title1, id1, date1));
-        movieRepository.save(new Movie(2, title2, id2, date2));
+
+
+
+        var save = movieRepository.save(new Movie(2, title2, id2, date2));
     }
 }
