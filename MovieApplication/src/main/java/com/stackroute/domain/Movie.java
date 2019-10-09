@@ -23,6 +23,9 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(int id, String title1, int id1, String date1) {
+    }
+
 
     public int getId() {
         return id;
