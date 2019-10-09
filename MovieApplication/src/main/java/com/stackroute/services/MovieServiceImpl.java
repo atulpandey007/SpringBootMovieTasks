@@ -1,14 +1,13 @@
-package com.stackroute.MovieApp.service;
+package com.stackroute.services;
 
 import com.stackroute.Exception.MovieAlreadyExistsException;
 import com.stackroute.Exception.MovieNotFoundException;
-import com.stackroute.MovieApplication.domain.Movie;
+import com.stackroute.MovieApp.domain.Movie;
 import com.stackroute.MovieApp.exception.MovieAlreadyExistsException;
 import com.stackroute.MovieApp.exception.MovieNotFoundException;
 import com.stackroute.MovieApplication.MovieRepository;
 import com.stackroute.MovieRepository.MovieRepository;
 import com.stackroute.domain.Movie;
-import com.stackroute.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -47,7 +46,7 @@ public class MovieServiceImpl implements MovieService, ApplicationListener<Conte
     @Override
     public Movie saveNewMovie(Movie movie) throws MovieAlreadyExistsException {
 
-        if(movieRepository.existsById(movie.getId())){
+        if(movieRepository.existsById(movie.getid())){
             throw new MovieAlreadyExistsException("Movie Already Exists");
         }
         Movie savedMovie = movieRepository.save(movie);
@@ -74,7 +73,7 @@ public class MovieServiceImpl implements MovieService, ApplicationListener<Conte
     }
 
     @Override
-    public boolean deleteById(int id) throws MovieNotFoundException {
+    public boolean deleteById(int id) throws MovieNotFoundException{
         Optional<Movie> movieId = movieRepository.findById(id);
         if (movieId.isEmpty()){
             throw new MovieNotFoundException("Movie not found");
@@ -96,31 +95,6 @@ public class MovieServiceImpl implements MovieService, ApplicationListener<Conte
     }
 
     @Override
-    public Movie saveMovie(Movie movie) {
-        return null;
-    }
-
-    @Override
-    public List<Movie> getAllMovies() {
-        return null;
-    }
-
-    @Override
-    public Movie updateMovie(Movie movie, int id) {
-        return null;
-    }
-
-    @Override
-    public boolean deleteMovie(int id) {
-        return false;
-    }
-
-    @Override
-    public Optional<Movie> getMovieById(int id) {
-        return Optional.empty();
-    }
-
-    @Override
     public List<Movie> getByName(String title) {
         List<Movie> id = movieRepository.findTitleByName(title);
         return id;
@@ -135,9 +109,6 @@ public class MovieServiceImpl implements MovieService, ApplicationListener<Conte
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         movieRepository.save(new Movie(1, title1, id1, date1));
-
-
-
-        var save = movieRepository.save(new Movie(2, title2, id2, date2));
+        movieRepository.save(new Movie(2, title2, id2, date2));
     }
 }
