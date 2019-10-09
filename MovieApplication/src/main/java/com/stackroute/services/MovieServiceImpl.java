@@ -61,5 +61,5 @@ public class MovieServiceImpl implements MovieService {
         List<Movie> id = movieRepository.findTitleByName(title);
         return id;
     }
-    
+
 }
