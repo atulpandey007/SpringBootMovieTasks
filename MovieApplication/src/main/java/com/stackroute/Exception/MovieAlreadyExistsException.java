@@ -1,4 +1,4 @@
-package Exception;
+package com.stackroute.Exception;
 
 
 public class MovieAlreadyExistsException extends Exception {
