@@ -19,5 +19,6 @@ public interface MovieService {
 
     public Optional<Movie> getMovieById(int id);
 
-    List<Movie> getByName(String title);
+
+    public List<Movie> getByName(String title);
 }

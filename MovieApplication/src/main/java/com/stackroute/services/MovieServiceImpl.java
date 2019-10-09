@@ -58,6 +58,8 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> getByName(String title) {
-        return null;
+        List<Movie> id = movieRepository.findTitleByName(title);
+        return id;
     }
+    
 }
