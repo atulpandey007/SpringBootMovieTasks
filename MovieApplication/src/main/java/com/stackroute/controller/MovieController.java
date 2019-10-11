@@ -1,3 +1,5 @@
+package com.stackroute.MovieApp.controller;
+
 import com.stackroute.MovieApp.domain.Movie;
 import com.stackroute.MovieApp.exception.MovieAlreadyExistsException;
 import com.stackroute.MovieApp.exception.MovieNotFoundException;
@@ -29,7 +31,6 @@ public class MovieController {
         this.movieService = movieService;
         this.environment = environment;
     }
-
 
 
     private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());

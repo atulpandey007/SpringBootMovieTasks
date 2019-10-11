@@ -1,9 +1,9 @@
 package com.stackroute.Bootstrap;
 
+package com.stackroute.MovieApp.bootstrap;
+
 import com.stackroute.MovieApp.domain.Movie;
 import com.stackroute.MovieApp.repository.MovieRepository;
-import com.stackroute.MovieRepository.MovieRepository;
-import com.stackroute.domain.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;

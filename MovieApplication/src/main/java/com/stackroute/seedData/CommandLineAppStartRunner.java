@@ -22,4 +22,4 @@ public class CommandLineAppStartRunner implements CommandLineRunner {
         } catch (MovieAlreadyExistsException e) {
             e.printStackTrace();
         }
-    }
+    }}

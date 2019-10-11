@@ -1,9 +1,8 @@
-package com.stackroute.services;
-
 import com.stackroute.MovieApp.domain.Movie;
 import com.stackroute.MovieApp.exception.MovieAlreadyExistsException;
 import com.stackroute.MovieApp.exception.MovieNotFoundException;
 import com.stackroute.MovieApp.repository.MovieRepository;
+import com.stackroute.services.MovieService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
